@@ -2,6 +2,7 @@ var headingImg;
 var infoImg;
 var backImg;
 var selectImg;
+var workImg;
 var img = new Array();
 var sound = new Array();
 
@@ -12,6 +13,7 @@ function preload() {
 	headingImg = loadImage('assets/naslov.png');
 	infoImg = loadImage('assets/info.png');
 	selectImg = loadImage('assets/izbira.png');
+	workImg = loadImage('assets/delovna.png');
 	backImg = loadImage('assets/back.png');
 	for(i = 0; i < 36; i++){
 		img[i] = loadImage('assets/img' + i + '.png');
@@ -26,24 +28,32 @@ function setup() {
 	canvas.parent('sketch-holder');
 
 	noLoop();
-	step0();
+	drawStep0();
 }
 
 function draw() {
 
 }
 
-function step0(){
+function drawStep0(){
 	step = 0;
 	image(headingImg, 0, 0);
 }
 
-function step1(){
+function mouseStep0(){
+	drawStep1();
+}
+
+function drawStep1(){
 	step = 1;
 	image(infoImg, 0, 0);
 }
 
-function step2(){
+function mouseStep1(){
+	drawStep2();
+}
+
+function drawStep2(){
 	step = 2;
 	selectedImg = -1;
 
@@ -63,16 +73,20 @@ function step2(){
 	image(infoImg, 200, 84, 400, 397)
 }
 
-function step3(){
+function mouseStep2(){
 	if(mouseY < 67){
 		if(mouseX > 604 && mouseX < 668){
-			step0();
+			drawStep0();
 		}
 	}else if(mouseY > 84 && mouseY < 482 && mouseX > 5){
 		var row = ((mouseY - 84) / 67) >> 0;
 		if(mouseX < 196){
 			var col = ((mouseX - 6) / 65) >> 0;
 			selectPhoto(row, col);
+		}else if(mouseX > 200 && mouseX < 601){
+			if(selectedImg > -1){
+				drawStep3();
+			}
 		}else if(mouseX > 605 && mouseX < 795){
 			var col = (((mouseX - 605) / 65) >> 0) + 3;
 			selectPhoto(row, col);
@@ -87,13 +101,28 @@ function selectPhoto(row, col){
 	image(img[imgId], 200, 84, 400, 397)
 }
 
+function drawStep3(){
+	step = 3;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img[selectedImg], 200, 84, 400, 397)
+}
+
+function mouseStep3(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep2();
+	}
+}
+
 function mousePressed() {
 	switch(step) {
 	    case 0:
-	        step1(); break;
+	        mouseStep0(); break;
 	    case 1:
-	        step2(); break;
+	        mouseStep1(); break;
 	    case 2:
-	        step3(); break;
+	        mouseStep2(); break;
+	    case 3:
+	    	mouseStep3(); break;
 	}
 }
