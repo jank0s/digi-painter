@@ -10,6 +10,8 @@ var sound = new Array();
 var step = 0;
 var selectedImg = -1;
 
+var selectedColor;
+
 function preload() {
 	headingImg = loadImage('assets/naslov.png');
 	infoImg = loadImage('assets/info.png');
@@ -120,12 +122,13 @@ function mouseStep3(){
 }
 
 function selectColor(){
-	image(backImg, 128, 84, 63, 63);
+	selectedColor = get(mouseX, mouseY);
 }
 
 function drawStep4(){
 	step = 4;
 	image(xImg, 610, 84, 63, 63);
+	fill(selectedColor);
 }
 
 function mouseStep4(){
