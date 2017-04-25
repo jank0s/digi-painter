@@ -1,5 +1,14 @@
-#display {
-    border: 1px solid #000000;
-    margin: 50px auto;
-    display: block;
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
 }
