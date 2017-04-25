@@ -1,6 +1,7 @@
 var headingImg;
 var infoImg;
 var backImg;
+var xImg;
 var selectImg;
 var workImg;
 var img = new Array();
@@ -15,6 +16,7 @@ function preload() {
 	selectImg = loadImage('assets/izbira.png');
 	workImg = loadImage('assets/delovna.png');
 	backImg = loadImage('assets/back.png');
+	xImg = loadImage('assets/x.png');
 	for(i = 0; i < 36; i++){
 		img[i] = loadImage('assets/img' + i + '.png');
 	}
@@ -109,9 +111,41 @@ function drawStep3(){
 }
 
 function mouseStep3(){
-	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+	if(mouseX > 200 && mouseX < 601 && mouseY > 282 && mouseY < 482){
+		selectColor();
+		drawStep4();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep2();
 	}
+}
+
+function selectColor(){
+	image(backImg, 128, 84, 63, 63);
+}
+
+function drawStep4(){
+	step = 4;
+	image(xImg, 610, 84, 63, 63);
+}
+
+function mouseStep4(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep3();
+	}
+}
+
+function dragStep4(){
+	if(mouseX > 200 && mouseX < 601 && mouseY > 282 && mouseY < 482){
+		ellipse(mouseX, mouseY, 5, 5);
+	}
+}
+
+function mouseDragged() {
+	switch(step) {
+	    case 4:
+	    	dragStep4(); break;
+	}
+	return false;
 }
 
 function mousePressed() {
@@ -124,5 +158,7 @@ function mousePressed() {
 	        mouseStep2(); break;
 	    case 3:
 	    	mouseStep3(); break;
+	    case 4:
+	    	mouseStep4(); break;
 	}
 }
