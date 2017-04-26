@@ -122,13 +122,16 @@ function mouseStep3(){
 }
 
 function selectColor(){
-	selectedColor = get(mouseX, mouseY);
+	var c = get(mouseX, mouseY);
+	selectedColor = color(red(c), green(c), blue(c), 30);
 }
 
 function drawStep4(){
 	step = 4;
 	image(xImg, 610, 84, 63, 63);
 	fill(selectedColor);
+	noStroke();
+	rectMode(CENTER);
 }
 
 function mouseStep4(){
@@ -138,9 +141,13 @@ function mouseStep4(){
 }
 
 function dragStep4(){
-	if(mouseX > 200 && mouseX < 601 && mouseY > 282 && mouseY < 482){
-		ellipse(mouseX, mouseY, 5, 5);
+	if(mouseX > 200 + 13 && mouseX < 601 - 13 && mouseY > 282 + 13 && mouseY < 482 - 13){
+		paint();
 	}
+}
+
+function paint(){
+	rect(mouseX, mouseY, 25, 25);
 }
 
 function mouseDragged() {
