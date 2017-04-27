@@ -1,3 +1,5 @@
+var d
+
 var headingImg;
 var infoImg;
 var backImg;
@@ -11,6 +13,10 @@ var step = 0;
 var selectedImg = -1;
 
 var selectedColor;
+
+var img1;
+var img2;
+var img3;
 
 function preload() {
 	headingImg = loadImage('assets/naslov.png');
@@ -30,6 +36,8 @@ function preload() {
 function setup() {
 	var canvas = createCanvas(800, 600);
 	canvas.parent('sketch-holder');
+	d = pixelDensity();
+	console.log(d);
 
 	noLoop();
 	drawStep0();
@@ -123,13 +131,17 @@ function mouseStep3(){
 
 function selectColor(){
 	var c = get(mouseX, mouseY);
-	selectedColor = color(red(c), green(c), blue(c), 30);
+	selectedColor = color(red(c), green(c), blue(c), 100);
 }
 
 function drawStep4(){
 	step = 4;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
 	fill(selectedColor);
+	//fill(red(selectedColor), green(selectedColor), blue(selectedColor), 20);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -137,6 +149,9 @@ function drawStep4(){
 function mouseStep4(){
 	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep3();
+	}else if(mouseX > 610 && mouseX < 673 && mouseY > 84 && mouseY < 147){
+		img1 = capture(200, 84, 400, 397);
+		drawStep5();
 	}
 }
 
@@ -146,14 +161,98 @@ function dragStep4(){
 	}
 }
 
+function drawStep5(){
+	step = 5;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img1, 200, 84, 400, 397);
+	image(img1, 610, 84, 63, 63);
+}
+
+function mouseStep5(){
+	if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 284){
+		selectColor();
+		drawStep6();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep4();
+		image(img1, 200, 84, 400, 397);
+	}
+}
+
+function drawStep6(){
+	step = 6;
+	image(xImg, 610, 152, 63, 63);
+	fill(selectedColor);
+	//fill(red(selectedColor), green(selectedColor), blue(selectedColor), 20);
+	noStroke();
+	rectMode(CENTER);
+}
+
+function mouseStep6(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep5();
+	}else if(mouseX > 610 && mouseX < 673 && mouseY > 152 && mouseY < 215){
+		img2 = capture(200, 84, 400, 397);
+		drawStep7();
+	}
+}
+
+function dragStep6(){
+	if(mouseX > 200 + 13 && mouseX < 601 - 13 && mouseY > 84 + 13 && mouseY < 284 - 13){
+		paint();
+	}
+}
+
+function drawStep7(){
+	step = 7;
+	image(img2, 610, 152, 63, 63);
+}
+
+function mouseStep7(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep6();
+	}else if(mouseX > 610 && mouseX < 673 && mouseY > 152 && mouseY < 215){
+		img3 = capture(200, 84, 400, 397);
+		drawStep8();
+	}
+}
+
+function drawStep8(){
+	
+}
+
 function paint(){
 	rect(mouseX, mouseY, 25, 25);
+}
+
+function capture(x, y, w, h){
+	var img = createImage(w , h);
+	img.loadPixels();
+	loadPixels();
+	for (i = 0; i < w; i++) {
+		for (j = 0; j < h; j++) {
+			//get canvas pixel index
+			var off = ( (j + y) * d * width + (i + x) ) * d * 4;
+			//get img pixel index
+			var offImg = ( j * w + i ) * 4;
+			//copy canvas pixel to img pixel
+			img.pixels[offImg] = pixels[off];
+			img.pixels[offImg + 1] = pixels[off + 1];
+			img.pixels[offImg + 2] = pixels[off + 2];
+			img.pixels[offImg + 3] = pixels[off + 3];
+			//img.set(i, j, color(pixels[off], pixels[off+1], pixels[off+2], pixels[off+3]));
+	 	}
+	}
+	img.updatePixels();
+	return img;
 }
 
 function mouseDragged() {
 	switch(step) {
 	    case 4:
 	    	dragStep4(); break;
+	    case 6:
+	    	dragStep6(); break;
 	}
 	return false;
 }
@@ -170,5 +269,11 @@ function mousePressed() {
 	    	mouseStep3(); break;
 	    case 4:
 	    	mouseStep4(); break;
+	    case 5:
+	    	mouseStep5(); break;
+	    case 6:
+	    	mouseStep6(); break;
+	    case 7:
+	    	mouseStep7(); break;
 	}
 }
