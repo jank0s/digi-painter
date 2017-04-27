@@ -73,6 +73,8 @@ function drawStep2(){
 
 	image(selectImg, 0, 0);
 	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
 	textSize(22);
 	text("Izberi eno izmed majhnih slik in izbiro potrdi s pritiskom na osrendji kvadrat", 220, 5, 360, 150);
 	image(backImg, 604, 4, 63, 63);
@@ -122,6 +124,8 @@ function drawStep3(){
 	step = 3;
 	image(workImg, 0, 0);
 	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
 	textSize(22);
 	text("Izberi barvo na spodnji polovici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
@@ -146,6 +150,8 @@ function drawStep4(){
 	step = 4;
 	image(workImg, 0, 0);
 	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
 	textSize(22);
 	text("Z njo prekrij spodnjo polovico slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
