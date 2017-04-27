@@ -241,7 +241,7 @@ function drawStep7(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Zmešaj barve na polivici slike", 220, 25, 360, 150);
+	text("Zmešaj barve na polovici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img2, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -265,7 +265,7 @@ function drawStep8(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Zmešaj barve na polivici slike", 220, 25, 360, 150);
+	text("Zmešaj barve na polovici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
