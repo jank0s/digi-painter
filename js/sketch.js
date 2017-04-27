@@ -158,7 +158,6 @@ function drawStep4(){
 	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
 	fill(selectedColor);
-	//fill(red(selectedColor), green(selectedColor), blue(selectedColor), 20);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -214,7 +213,6 @@ function drawStep6(){
 	image(img1, 610, 84, 63, 63);
 	image(xImg, 610, 152, 63, 63);
 	fill(selectedColor);
-	//fill(red(selectedColor), green(selectedColor), blue(selectedColor), 20);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -272,6 +270,8 @@ function drawStep8(){
 	image(xImg, 610, 220, 63, 63);
 	image(img2, 200, 84, 400, 397);
 	fill(selectedColor);
+	noStroke();
+	rectMode(CENTER);
 }
 
 function mouseStep8(){
