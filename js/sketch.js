@@ -13,7 +13,9 @@ var conceptImg;
 var step = 0;
 var selectedImg = -1;
 
-var selectedColor;
+var selectedColor1;
+var selectedColor2;
+var selectedColor3;
 
 var img1;
 var img2;
@@ -134,7 +136,7 @@ function drawStep3(){
 
 function mouseStep3(){
 	if(mouseX > 200 && mouseX < 601 && mouseY > 282 && mouseY < 482){
-		selectColor();
+		selectedColor1 = selectColor();
 		drawStep4();
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep2();
@@ -143,7 +145,7 @@ function mouseStep3(){
 
 function selectColor(){
 	var c = get(mouseX, mouseY);
-	selectedColor = color(red(c), green(c), blue(c), 100);
+	return color(red(c), green(c), blue(c), 100);
 }
 
 function drawStep4(){
@@ -157,7 +159,7 @@ function drawStep4(){
 	image(backImg, 128, 84, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
-	fill(selectedColor);
+	fill(selectedColor1);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -192,7 +194,7 @@ function drawStep5(){
 
 function mouseStep5(){
 	if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 284){
-		selectColor();
+		selectedColor2 = selectColor();
 		drawStep6();
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep4();
@@ -212,7 +214,7 @@ function drawStep6(){
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 	image(xImg, 610, 152, 63, 63);
-	fill(selectedColor);
+	fill(selectedColor2);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -248,7 +250,7 @@ function drawStep7(){
 
 function mouseStep7(){
 	if(mouseX > 200 && mouseX < 601 && mouseY > 184 && mouseY < 383){
-		selectColor();
+		selectedColor3 = selectColor();
 		drawStep8();
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep6();
@@ -269,7 +271,7 @@ function drawStep8(){
 	image(img2, 610, 152, 63, 63);
 	image(xImg, 610, 220, 63, 63);
 	image(img2, 200, 84, 400, 397);
-	fill(selectedColor);
+	fill(selectedColor3);
 	noStroke();
 	rectMode(CENTER);
 }
@@ -326,7 +328,6 @@ function drawStep10(){
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 	image(img3, 610, 220, 63, 63);
-	fill(selectedColor);
 }
 
 function mouseStep10(){
