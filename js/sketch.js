@@ -236,6 +236,7 @@ function drawStep8(){
 	image(img2, 610, 152, 63, 63);
 	image(xImg, 610, 220, 63, 63);
 	image(img2, 200, 84, 400, 397);
+	fill(selectedColor);
 }
 
 function mouseStep8(){
@@ -280,6 +281,7 @@ function drawStep10(){
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 	image(img3, 610, 220, 63, 63);
+	fill(selectedColor);
 }
 
 function mouseStep10(){
