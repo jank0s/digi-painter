@@ -1,4 +1,4 @@
-var d
+var d;
 
 var headingImg;
 var infoImg;
@@ -8,6 +8,7 @@ var selectImg;
 var workImg;
 var img = new Array();
 var sound = new Array();
+var conceptImg;
 
 var step = 0;
 var selectedImg = -1;
@@ -31,6 +32,7 @@ function preload() {
 	for(i = 0; i < 4; i++){
 		sound[i] = loadSound('assets/sound' + i + '.wav');
 	}
+	conceptImg = loadImage('assets/concept.png');
 }
 
 function setup() {
@@ -181,6 +183,10 @@ function mouseStep5(){
 
 function drawStep6(){
 	step = 6;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img1, 200, 84, 400, 397);
+	image(img1, 610, 84, 63, 63);
 	image(xImg, 610, 152, 63, 63);
 	fill(selectedColor);
 	//fill(red(selectedColor), green(selectedColor), blue(selectedColor), 20);
@@ -205,20 +211,102 @@ function dragStep6(){
 
 function drawStep7(){
 	step = 7;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img2, 200, 84, 400, 397);
+	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 }
 
 function mouseStep7(){
-	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
-		drawStep6();
-	}else if(mouseX > 610 && mouseX < 673 && mouseY > 152 && mouseY < 215){
-		img3 = capture(200, 84, 400, 397);
+	if(mouseX > 200 && mouseX < 601 && mouseY > 184 && mouseY < 383){
+		selectColor();
 		drawStep8();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep6();
+		image(img2, 200, 84, 400, 397);
 	}
 }
 
 function drawStep8(){
-	
+	step = 8;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img1, 610, 84, 63, 63);
+	image(img2, 610, 152, 63, 63);
+	image(xImg, 610, 220, 63, 63);
+	image(img2, 200, 84, 400, 397);
+}
+
+function mouseStep8(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep7();
+	}else if(mouseX > 610 && mouseX < 673 && mouseY > 220 && mouseY < 283){
+		img3 = capture(200, 84, 400, 397);
+		drawStep9();
+	}
+}
+
+function dragStep8(){
+	if(mouseX > 200 + 13 && mouseX < 601 - 13 && mouseY > 184 + 13 && mouseY < 383 - 13){
+		paint();
+	}
+}
+
+function drawStep9(){
+	step = 9;
+	image(workImg, 0, 0);
+	image(backImg, 128, 84, 63, 63);
+	image(img1, 610, 84, 63, 63);
+	image(img2, 610, 152, 63, 63);
+	image(img3, 610, 220, 63, 63);
+	image(xImg, 610, 288, 63, 63);
+	image(img3, 200, 84, 400, 397);
+}
+
+function mouseStep9(){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		drawStep8();
+		image(img3, 200, 84, 400, 397);
+	}else if(mouseX > 610 && mouseX < 673 && mouseY > 288 && mouseY < 351){
+		drawStep10();
+	}
+}
+
+function drawStep10(){
+	step = 10;
+	image(workImg, 0, 0);
+	image(img3, 200, 84, 400, 397);
+	image(img1, 610, 84, 63, 63);
+	image(img2, 610, 152, 63, 63);
+	image(img3, 610, 220, 63, 63);
+}
+
+function mouseStep10(){
+	if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 485){
+		drawStep11();
+	}
+}
+
+function drawStep11(){
+	step = 11;
+	image(workImg, 0, 0);
+	noStroke();
+	fill(91);
+	rectMode(CORNER);
+	rect(200, 84, 400, 397);
+	image(img1, 610, 84, 63, 63);
+	image(img2, 610, 152, 63, 63);
+	image(img3, 610, 220, 63, 63);
+	rect(610, 288, 63, 63)
+	image(xImg, 610, 356, 63, 63);
+	image(conceptImg, 200, 481, 400, 100);
+}
+
+function mouseStep11(){
+	if(mouseX > 610 && mouseX < 673 && mouseY > 356 && mouseY < 419){
+		drawStep0();
+	}
 }
 
 function paint(){
@@ -253,6 +341,8 @@ function mouseDragged() {
 	    	dragStep4(); break;
 	    case 6:
 	    	dragStep6(); break;
+	    case 8:
+	    	dragStep8(); break;
 	}
 	return false;
 }
@@ -275,5 +365,13 @@ function mousePressed() {
 	    	mouseStep6(); break;
 	    case 7:
 	    	mouseStep7(); break;
+	    case 8:
+	    	mouseStep8(); break;
+	    case 9:
+	    	mouseStep9(); break;
+	    case 10:
+	    	mouseStep10(); break;
+	    case 11:
+	    	mouseStep11(); break;
 	}
 }
