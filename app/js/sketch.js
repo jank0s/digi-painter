@@ -72,6 +72,9 @@ function drawStep2(){
 	selectedImg = -1;
 
 	image(selectImg, 0, 0);
+	textAlign(CENTER);
+	textSize(22);
+	text("Izberi eno izmed majhnih slik in izbiro potrdi s pritiskom na osrendji kvadrat", 220, 5, 360, 150);
 	image(backImg, 604, 4, 63, 63);
 
 	for(i = 0; i < 36; i++){
@@ -118,6 +121,9 @@ function selectPhoto(row, col){
 function drawStep3(){
 	step = 3;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	textSize(22);
+	text("Izberi barvo na spodnji polovici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397)
 }
@@ -139,6 +145,9 @@ function selectColor(){
 function drawStep4(){
 	step = 4;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	textSize(22);
+	text("Z njo prekrij spodnjo polovico slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
@@ -166,6 +175,11 @@ function dragStep4(){
 function drawStep5(){
 	step = 5;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Izberi barvo na zgornji polovici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -184,6 +198,11 @@ function mouseStep5(){
 function drawStep6(){
 	step = 6;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Prekrij zgornjo polovico z izbrano barvo", 220, 15, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -212,6 +231,11 @@ function dragStep6(){
 function drawStep7(){
 	step = 7;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Zmešaj barve na polivici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img2, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -231,6 +255,11 @@ function mouseStep7(){
 function drawStep8(){
 	step = 8;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Zmešaj barve na polivici slike", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -257,6 +286,11 @@ function dragStep8(){
 function drawStep9(){
 	step = 9;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Podpiši sliko", 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -277,6 +311,11 @@ function mouseStep9(){
 function drawStep10(){
 	step = 10;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Dotakni se slike, da jo spremeniš v sivino", 220, 15, 360, 150);
 	image(img3, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -293,6 +332,11 @@ function mouseStep10(){
 function drawStep11(){
 	step = 11;
 	image(workImg, 0, 0);
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	textSize(22);
+	text("Hvala za sodelovanje", 220, 25, 360, 150);
 	noStroke();
 	fill(91);
 	rectMode(CORNER);
