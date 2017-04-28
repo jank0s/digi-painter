@@ -35,7 +35,7 @@ function preload() {
 	}
 	for(i = 0; i < 4; i++){
 		sound[i] = loadSound('assets/sound' + i + '.wav');
-		sound[i].playMode('restart');
+		//sound[i].playMode('restart');
 	}
 	conceptImg = loadImage('assets/concept.png');
 }
@@ -373,27 +373,42 @@ function paint(){
 function playSound(){
 	if(released){
 		for(i = 0; i < 4; i++){
-			sound[i].stop();
+			if(sound[i].isPlaying()){
+				sound[i].stop();
+			}
 		}
 	}
 	released = false;
+
 	if(mouseX < 400){
 		if(mouseY < 283){
 			//sound0
 			if(!sound[0].isPlaying()){
 				sound[0].play();
 			}
-			sound[1].stop();
-			sound[2].stop();
-			sound[3].stop();
+			if(sound[1].isPlaying()){
+				sound[1].stop();
+			}
+			if(sound[2].isPlaying()){
+				sound[2].stop();
+			}
+			if(sound[3].isPlaying()){
+				sound[3].stop();
+			}
 		}else{
 			//sound2
 			if(!sound[2].isPlaying()){
 				sound[2].play();
 			}
-			sound[0].stop();
-			sound[1].stop();
-			sound[3].stop();
+			if(sound[0].isPlaying()){
+				sound[0].stop();
+			}
+			if(sound[1].isPlaying()){
+				sound[1].stop();
+			}
+			if(sound[3].isPlaying()){
+				sound[3].stop();
+			}
 		}
 	}else{
 		if(mouseY < 283){
@@ -401,18 +416,29 @@ function playSound(){
 			if(!sound[1].isPlaying()){
 				sound[1].play();
 			}
-			sound[0].stop();
-			sound[2].stop();
-			sound[3].stop();
-
+			if(sound[0].isPlaying()){
+				sound[0].stop();
+			}
+			if(sound[2].isPlaying()){
+				sound[2].stop();
+			}
+			if(sound[3].isPlaying()){
+				sound[3].stop();
+			}
 		}else{
 			//sound3
 			if(!sound[3].isPlaying()){
 				sound[3].play();
 			}
-			sound[0].stop();
-			sound[1].stop();
-			sound[2].stop();
+			if(sound[0].isPlaying()){
+				sound[0].stop();
+			}
+			if(sound[1].isPlaying()){
+				sound[1].stop();
+			}
+			if(sound[2].isPlaying()){
+				sound[2].stop();
+			}
 		}
 	}
 }
