@@ -323,16 +323,21 @@ function drawStep9(){
 	stroke(255);
 	rect(200, 84, 400, 470);
 	input = createInput();
+	placeInput();
+	placeInput();
+}
+
+function placeInput(){
 	var offX = canvas.canvas.offsetLeft;
 	var offY = canvas.canvas.offsetTop;
-	var x = offX + 65 + 255;
+	var x = offX + 255;
 	var y = offY + 109;
 	input.style('width', '290px');
 	input.style('height', '35px');
 	input.style('font-size', '25px');
 	input.position(x, y);
-
 }
+
 
 function mouseStep9(){
 	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
@@ -538,6 +543,13 @@ function mousePressed() {
 	    	mouseStep10(); break;
 	    case 11:
 	    	mouseStep11(); break;
+	}
+}
+
+function windowResized() {
+	switch(step) {
+	    case 9:
+	    	placeInput(); break;
 	}
 }
 
