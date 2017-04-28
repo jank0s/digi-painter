@@ -1,3 +1,4 @@
+var canvas;
 var d;
 
 var headingImg;
@@ -21,6 +22,9 @@ var img1;
 var img2;
 var img3;
 
+var input;
+var sig;
+
 var released = true;
 
 function preload() {
@@ -41,7 +45,7 @@ function preload() {
 }
 
 function setup() {
-	var canvas = createCanvas(800, 600);
+	canvas = createCanvas(800, 600);
 	canvas.parent('sketch-holder');
 	d = pixelDensity();
 	console.log(d);
@@ -301,6 +305,7 @@ function dragStep8(){
 
 function drawStep9(){
 	step = 9;
+
 	image(workImg, 0, 0);
 	textAlign(CENTER);
 	rectMode(CORNER);
@@ -313,13 +318,30 @@ function drawStep9(){
 	image(img3, 610, 220, 63, 63);
 	image(xImg, 610, 288, 63, 63);
 	image(img3, 200, 84, 400, 397);
+
+	fill(239, 235, 221);
+	stroke(255);
+	rect(200, 84, 400, 470);
+	input = createInput();
+	var offX = canvas.canvas.offsetLeft;
+	var offY = canvas.canvas.offsetTop;
+	var x = offX + 65 + 255;
+	var y = offY + 109;
+	input.style('width', '290px');
+	input.style('height', '35px');
+	input.style('font-size', '25px');
+	input.position(x, y);
+
 }
 
 function mouseStep9(){
 	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		input.remove();
 		drawStep8();
 		image(img3, 200, 84, 400, 397);
 	}else if(mouseX > 610 && mouseX < 673 && mouseY > 288 && mouseY < 351){
+		sig = input.value();
+		input.remove();
 		drawStep10();
 	}
 }
@@ -330,6 +352,7 @@ function drawStep10(){
 	textAlign(CENTER);
 	rectMode(CORNER);
 	fill(0);
+	noStroke();
 	textSize(22);
 	text("Dotakni se slike, da jo spremeniš v sivino", 220, 15, 360, 150);
 	image(img3, 200, 84, 400, 397);
