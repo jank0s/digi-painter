@@ -57,6 +57,11 @@ function draw() {
 function drawStep0(){
 	step = 0;
 	image(headingImg, 0, 0);
+	for(i = 0; i < 4; i++){
+		if(sound[i].isPlaying()){
+			sound[i].stop();
+		}
+	}
 }
 
 function mouseStep0(){
