@@ -295,7 +295,7 @@ function mouseStep8(){
 
 function dragStep8(){
 	if(mouseX > 200 + 13 && mouseX < 601 - 13 && mouseY > 184 + 13 && mouseY < 383 - 13){
-		paint();
+		mixPaint();
 	}
 }
 
@@ -371,6 +371,13 @@ function mouseStep11(){
 }
 
 function paint(){
+	rect(mouseX, mouseY, 25, 25);
+	playSound();
+}
+
+function mixPaint(){
+	var c = get(mouseX, mouseY);
+	fill(lerpColor(selectedColor2, color(red(c), green(c), blue(c), 100), 0.5));
 	rect(mouseX, mouseY, 25, 25);
 	playSound();
 }
