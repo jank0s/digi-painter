@@ -10,6 +10,7 @@ var workImg;
 var img = new Array();
 var sound = new Array();
 var conceptImg;
+var printImg;
 
 var step = 0;
 var selectedImg = -1;
@@ -42,6 +43,7 @@ function preload() {
 		//sound[i].playMode('restart');
 	}
 	conceptImg = loadImage('assets/concept.png');
+	printImg = loadImage('assets/print.png');
 }
 
 function setup() {
@@ -354,6 +356,7 @@ function mouseStep9(){
 function drawStep10(){
 	step = 10;
 	image(workImg, 0, 0);
+	image(printImg, 128, 84, 63, 63);
 	textAlign(CENTER);
 	rectMode(CORNER);
 	fill(0);
@@ -367,7 +370,9 @@ function drawStep10(){
 }
 
 function mouseStep10(){
-	if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 485){
+	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		printImage();
+	}else if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 485){
 		drawStep11();
 	}
 }
@@ -396,6 +401,23 @@ function mouseStep11(){
 	if(mouseX > 610 && mouseX < 673 && mouseY > 356 && mouseY < 419){
 		drawStep0();
 	}
+}
+
+function printImage(){
+	var dataUrl = img3.canvas.toDataURL();
+	var windowContent = '<!DOCTYPE html>';
+    windowContent += '<html>';
+    windowContent += '<script type="text/javascript">function pr(){window.print(); window.close();}</script>';
+    windowContent += '<body>';
+    windowContent += '<img src="' + dataUrl + '" onload="pr()">';
+    windowContent += '<p>' + sig + '</p>';
+    windowContent += '</body>';
+    windowContent += '</html>';
+    printWin = window.open('','','width=400,height=600');
+    printWin.document.open();
+    printWin.document.write(windowContent);
+    printWin.document.close();
+    printWin.focus();
 }
 
 function paint(){
