@@ -163,7 +163,7 @@ function mouseStep3(){
 
 function selectColor(){
 	var c = get(mouseX, mouseY);
-	return color(red(c), green(c), blue(c), 30);
+	return color(red(c), green(c), blue(c), 10);
 }
 
 function drawStep4(){
@@ -425,15 +425,19 @@ function printImage(){
 }
 
 function paint(){
-	rect(mouseX, mouseY, 25, 25);
+	var x = mouseX;
+	var y = mouseY;
+	//rect(mouseX, mouseY, 25, 25);
+	for(i = 25; i > 5; i-=2){
+		ellipse(x, y, i, i);
+	}
 	playSound();
 }
 
 function mixPaint(){
 	var c = get(mouseX, mouseY);
-	fill(lerpColor(selectedColor2, color(red(c), green(c), blue(c), 100), 0.5));
-	rect(mouseX, mouseY, 25, 25);
-	playSound();
+	fill(lerpColor(selectedColor3, color(red(c), green(c), blue(c), 100), 0.5));
+	paint();
 }
 
 function playSound(){
