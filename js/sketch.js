@@ -3,9 +3,11 @@ var d;
 var canvasWidth;
 var canvasHeight;
 var scl;
+var lang = 0;
 
 var headingImg;
 var infoImg;
+var langImg;
 var backImg;
 var xImg;
 var selectImg;
@@ -43,6 +45,7 @@ function preload() {
 	selectImg = loadImage('assets/izbira.png');
 	workImg = loadImage('assets/delovna.png');
 	backImg = loadImage('assets/back.png');
+	langImg = loadImage('assets/lang.png');
 	xImg = loadImage('assets/x.png');
 	for(i = 0; i < 36; i++){
 		img[i] = loadImage('assets/img' + i + '.png');
@@ -78,6 +81,7 @@ function drawStep0(){
 			sound[i].stop();
 		}
 	}
+	lang = 0;
 }
 
 function mouseStep0(){
@@ -90,19 +94,21 @@ function drawStep1(){
 }
 
 function mouseStep1(){
+	selectedImg = -1;
 	drawStep2();
 }
 
 function drawStep2(){
 	step = 2;
-	selectedImg = -1;
 
 	image(selectImg, 0, 0);
 	textAlign(CENTER);
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Izberi eno izmed majhnih slik in izbiro potrdi s pritiskom na osrendji kvadrat", 220, 5, 360, 150);
+	var t = ["Izberi eno izmed majhnih slik in izbiro potrdi s pritiskom na osrendji kvadrat", "Scegli tra le piccole immagini una di esse e conferma la scelta premendo il quadrato centrale", "Wähle eines unter den Kleinen bildern aus and bestätige die Wahl durch Druck auf das zentrale", "Select one of the small paintings and confirm your selection by pressing the central square"];
+	text(t[lang], 220, 5, 360, 150);
+	image(langImg, 135, 4, 63, 63);
 	image(backImg, 604, 4, 63, 63);
 
 	for(i = 0; i < 36; i++){
@@ -116,12 +122,17 @@ function drawStep2(){
 	}
 
 	image(infoImg, 200, 84, 400, 397)
+	if(selectedImg > -1){
+		image(img[selectedImg], 200, 84, 400, 397)
+	}
 }
 
 function mouseStep2(){
 	if(mouseY < 67){
 		if(mouseX > 604 && mouseX < 668){
 			drawStep0();
+		}else if (mouseX > 135 && mouseX < 199){
+			changeLang();
 		}
 	}else if(mouseY > 84 && mouseY < 482 && mouseX > 5){
 		var row = ((mouseY - 84) / 67) >> 0;
@@ -143,7 +154,7 @@ function selectPhoto(row, col){
 	//console.log(row + ', '+ col);
 	var imgId = col * 6 + row;
 	selectedImg = imgId;
-	image(img[imgId], 200, 84, 400, 397)
+	image(img[imgId], 200, 84, 400, 397);
 }
 
 function drawStep3(){
@@ -153,7 +164,8 @@ function drawStep3(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Izberi barvo na spodnji polovici slike", 220, 25, 360, 150);
+	var t = ["Izberi barvo na spodnji polovici slike", "Scegli il colore nella metà inferiore dell' iamgine", "Wähle die Farbe auf der unteren Hälfe des Bildes", "Select a colour from the bottom section of the picture"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397)
 }
@@ -163,6 +175,7 @@ function mouseStep3(){
 		selectedColor1 = selectColor();
 		drawStep4();
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		selectedImg = -1;
 		drawStep2();
 	}
 }
@@ -179,7 +192,8 @@ function drawStep4(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Z njo prekrij spodnjo polovico slike", 220, 25, 360, 150);
+	var t = ["Z njo prekrij spodnjo polovico slike", "Con esso ricopri la parte inferiore dell' iamgine", "Verdecke mit ihr die untere Hälfte des Bildes", "Cover the bottom half of the picture with the chosen colour"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
@@ -210,7 +224,8 @@ function drawStep5(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Izberi barvo na zgornji polovici slike", 220, 25, 360, 150);
+	var t = ["Izberi barvo na zgornji polovici slike", "Scegli il colore nella metà superiore dell' iamgine", "Wähle die Farbe auf der oberen Hälfe des Bildes", "Select a colour from the upper half of the picture"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -233,7 +248,8 @@ function drawStep6(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Prekrij zgornjo polovico z izbrano barvo", 220, 15, 360, 150);
+	var t = ["Prekrij zgornjo polovico z izbrano barvo", "Ricopri la metà superiore con il colore prescelto", "Verdecke die obere hälfte mit der ausgesuchten Farbe", "Cover the upper half of the picture with the chosen colour"];
+	text(t[lang], 220, 15, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -265,7 +281,8 @@ function drawStep7(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Zmešaj barve na polovici slike", 220, 25, 360, 150);
+	var t = ["Zmešaj barve na polovici slike", "Mescola il colorea all'altezza della metà dell' immagine", "Vermische die Farbe in del Mitte des Bildes", "Mix the colours in the middle of the picture"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img2, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
@@ -289,7 +306,8 @@ function drawStep8(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Zmešaj barve na polovici slike", 220, 25, 360, 150);
+	var t = ["Zmešaj barve na polovici slike", "Mescola il colorea all'altezza della metà dell' immagine", "Vermische die Farbe in del Mitte des Bildes", "Mix the colours in the middle of the picture"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -328,7 +346,8 @@ function drawStep9(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Podpiši sliko", 220, 25, 360, 150);
+	var t = ["Podpiši sliko", "Firma ' immagine", "Unterzeichne das Bild", "Sign the painting"];
+	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -377,7 +396,8 @@ function drawStep10(){
 	fill(0);
 	noStroke();
 	textSize(22);
-	text("Dotakni se slike, da jo spremeniš v sivino", 220, 15, 360, 150);
+	var t = ["Dotakni se slike, da jo spremeniš v sivino", "Toccare la pittura per trasformarlo in grigio", "Berühre das Gemälde, um es grau zu machen", "Touch the painting to turn it to gray"];
+	text(t[lang], 220, 15, 360, 150);
 	image(img3, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -399,7 +419,8 @@ function drawStep11(){
 	rectMode(CORNER);
 	fill(0);
 	textSize(22);
-	text("Hvala za sodelovanje", 220, 25, 360, 150);
+	var t = ["Hvala za sodelovanje", "Grazzie", "Danke", "Thank you"];
+	text(t[lang], 220, 25, 360, 150);
 	noStroke();
 	fill(91);
 	rectMode(CORNER);
@@ -585,6 +606,36 @@ function capture(x, y, w, h){
 	}
 	img.updatePixels();
 	return img;
+}
+
+function changeLang() {
+	lang = (lang + 1) % 4;
+	switch(step) {
+	    case 0:
+	        drawStep0(); break;
+	    case 1:
+	        drawStep1(); break;
+	    case 2:
+	        drawStep2(); break;
+	    case 3:
+	    	drawStep3(); break;
+	    case 4:
+	    	drawStep4(); break;
+	    case 5:
+	    	drawStep5(); break;
+	    case 6:
+	    	drawStep6(); break;
+	    case 7:
+	    	drawStep7(); break;
+	    case 8:
+	    	drawStep8(); break;
+	    case 9:
+	    	drawStep9(); break;
+	    case 10:
+	    	drawStep10(); break;
+	    case 11:
+	    	drawStep11(); break;
+	}
 }
 
 function mouseDragged() {
