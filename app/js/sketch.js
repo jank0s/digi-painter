@@ -167,6 +167,7 @@ function drawStep3(){
 	var t = ["Izberi barvo na spodnji polovici slike", "Scegli il colore nella metà inferiore dell' iamgine", "Wähle die Farbe auf der unteren Hälfe des Bildes", "Select a colour from the bottom section of the picture"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397)
 }
 
@@ -177,6 +178,8 @@ function mouseStep3(){
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		selectedImg = -1;
 		drawStep2();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -195,6 +198,7 @@ function drawStep4(){
 	var t = ["Z njo prekrij spodnjo polovico slike", "Con esso ricopri la parte inferiore dell' iamgine", "Verdecke mit ihr die untere Hälfte des Bildes", "Cover the bottom half of the picture with the chosen colour"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img[selectedImg], 200, 84, 400, 397);
 	image(xImg, 610, 84, 63, 63);
 	fill(selectedColor1);
@@ -208,6 +212,8 @@ function mouseStep4(){
 	}else if(mouseX > 610 && mouseX < 673 && mouseY > 84 && mouseY < 147){
 		img1 = capture(200, 84, 400, 397);
 		drawStep5();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -227,6 +233,7 @@ function drawStep5(){
 	var t = ["Izberi barvo na zgornji polovici slike", "Scegli il colore nella metà superiore dell' iamgine", "Wähle die Farbe auf der oberen Hälfe des Bildes", "Select a colour from the upper half of the picture"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 }
@@ -238,6 +245,8 @@ function mouseStep5(){
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep4();
 		image(img1, 200, 84, 400, 397);
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -251,6 +260,7 @@ function drawStep6(){
 	var t = ["Prekrij zgornjo polovico z izbrano barvo", "Ricopri la metà superiore con il colore prescelto", "Verdecke die obere hälfte mit der ausgesuchten Farbe", "Cover the upper half of the picture with the chosen colour"];
 	text(t[lang], 220, 15, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img1, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 	image(xImg, 610, 152, 63, 63);
@@ -265,6 +275,8 @@ function mouseStep6(){
 	}else if(mouseX > 610 && mouseX < 673 && mouseY > 152 && mouseY < 215){
 		img2 = capture(200, 84, 400, 397);
 		drawStep7();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -284,6 +296,7 @@ function drawStep7(){
 	var t = ["Zmešaj barve na polovici slike", "Mescola il colorea all'altezza della metà dell' immagine", "Vermische die Farbe in del Mitte des Bildes", "Mix the colours in the middle of the picture"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img2, 200, 84, 400, 397);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
@@ -296,6 +309,8 @@ function mouseStep7(){
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep6();
 		image(img2, 200, 84, 400, 397);
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -309,6 +324,7 @@ function drawStep8(){
 	var t = ["Zmešaj barve na polovici slike", "Mescola il colorea all'altezza della metà dell' immagine", "Vermische die Farbe in del Mitte des Bildes", "Mix the colours in the middle of the picture"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 	image(xImg, 610, 220, 63, 63);
@@ -329,6 +345,8 @@ function mouseStep8(){
 	}else if(mouseX > 610 && mouseX < 673 && mouseY > 220 && mouseY < 283){
 		img3 = capture(200, 84, 400, 397);
 		drawStep9();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -349,6 +367,7 @@ function drawStep9(){
 	var t = ["Podpiši sliko", "Firma ' immagine", "Unterzeichne das Bild", "Sign the painting"];
 	text(t[lang], 220, 25, 360, 150);
 	image(backImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 	image(img3, 610, 220, 63, 63);
@@ -384,6 +403,9 @@ function mouseStep9(){
 		sig = input.value();
 		input.remove();
 		drawStep10();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		input.remove();
+		changeLang();
 	}
 }
 
@@ -391,6 +413,7 @@ function drawStep10(){
 	step = 10;
 	image(workImg, 0, 0);
 	image(printImg, 128, 84, 63, 63);
+	image(langImg, 128, 152, 63, 63);
 	textAlign(CENTER);
 	rectMode(CORNER);
 	fill(0);
@@ -409,6 +432,8 @@ function mouseStep10(){
 		printImage();
 	}else if(mouseX > 200 && mouseX < 601 && mouseY > 84 && mouseY < 485){
 		drawStep11();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
+		changeLang();
 	}
 }
 
@@ -425,6 +450,7 @@ function drawStep11(){
 	fill(91);
 	rectMode(CORNER);
 	rect(200, 84, 400, 397);
+	image(langImg, 128, 84, 63, 63);
 	image(img1, 610, 84, 63, 63);
 	image(img2, 610, 152, 63, 63);
 	image(img3, 610, 220, 63, 63);
@@ -436,6 +462,8 @@ function drawStep11(){
 function mouseStep11(){
 	if(mouseX > 610 && mouseX < 673 && mouseY > 356 && mouseY < 419){
 		drawStep0();
+	}else if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
+		changeLang();
 	}
 }
 
