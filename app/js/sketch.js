@@ -54,6 +54,7 @@ function setup() {
 
 	noLoop();
 	drawStep0();
+	zoomCanvas();
 }
 
 function draw() {
@@ -569,6 +570,7 @@ function mousePressed() {
 }
 
 function windowResized() {
+	zoomCanvas();
 	switch(step) {
 	    case 9:
 	    	placeInput(); break;
@@ -577,4 +579,25 @@ function windowResized() {
 
 function mouseReleased() {
 	released = true;
+}
+
+function zoomCanvas() {
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+
+	var canvasWidth = 0;
+	var canvasHeight = 0;
+
+	if(w / 4 * 3 <= h){
+		canvasWidth = w;
+		canvasHeight = w / 4 * 3;
+	}else{
+		canvasHeight = h;
+		canvasWidth = h / 3 * 4;
+	}
+	
+	var c = document.getElementById('defaultCanvas0');
+	c.style.width = canvasWidth + 'px';
+	c.style.height = canvasHeight + 'px';
+	console.log(canvasWidth + ' px');
 }
