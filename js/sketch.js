@@ -53,7 +53,7 @@ function setup() {
 	canvas = createCanvas(800, 600);
 	canvas.parent('sketch-holder');
 	d = pixelDensity();
-	console.log(d);
+	//console.log(d);
 
 	noLoop();
 	drawStep0();
@@ -134,7 +134,7 @@ function mouseStep2(){
 }
 
 function selectPhoto(row, col){
-	console.log(row + ', '+ col);
+	//console.log(row + ', '+ col);
 	var imgId = col * 6 + row;
 	selectedImg = imgId;
 	image(img[imgId], 200, 84, 400, 397)
@@ -452,7 +452,7 @@ function playSound(){
 				sound[i].stop();
 			}
 		}
-		console.log(mouseX);
+		//console.log(mouseX);
 	}else if(mouseX < 400){
 		if(mouseY < 283){
 			//sound0
@@ -609,7 +609,7 @@ function zoomCanvas() {
 	var c = document.getElementById('defaultCanvas0');
 	c.style.width = canvasWidth + 'px';
 	c.style.height = canvasHeight + 'px';
-	console.log(canvasWidth + ' px');
+	//console.log(canvasWidth + ' px');
 
 	scale = canvasWidth / 800;
 }
