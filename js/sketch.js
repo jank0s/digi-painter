@@ -446,7 +446,14 @@ function playSound(){
 	}
 	released = false;
 
-	if(mouseX < 400){
+	if(mouseX < 266 || mouseX > 534 || mouseY < 150 || mouseY > 415){
+		for(i = 0; i < 4; i++){
+			if(sound[i].isPlaying()){
+				sound[i].stop();
+			}
+		}
+		console.log(mouseX);
+	}else if(mouseX < 400){
 		if(mouseY < 283){
 			//sound0
 			if(!sound[0].isPlaying()){
