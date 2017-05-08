@@ -412,7 +412,7 @@ function printImage(){
 	var windowContent = '<!DOCTYPE html>';
     windowContent += '<html>';
     windowContent += '<script type="text/javascript">function pr(){window.print(); window.close();}</script>';
-    windowContent += '<body>';
+    windowContent += '<body style="text-align: center;">';
     windowContent += '<img src="' + dataUrl + '" onload="pr()">';
     windowContent += '<p>' + sig + '</p>';
     windowContent += '</body>';
