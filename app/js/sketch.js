@@ -1,5 +1,8 @@
 var canvas;
 var d;
+var canvasWidth;
+var canvasHeight;
+var scale;
 
 var headingImg;
 var infoImg;
@@ -333,11 +336,11 @@ function drawStep9(){
 function placeInput(){
 	var offX = canvas.canvas.offsetLeft;
 	var offY = canvas.canvas.offsetTop;
-	var x = offX + 255;
-	var y = offY + 109;
-	input.style('width', '290px');
-	input.style('height', '35px');
-	input.style('font-size', '25px');
+	var x = offX + 255 * scale;
+	var y = offY + 109 * scale;
+	input.style('width', 290 * scale + 'px');
+	input.style('height', 35 * scale + 'px');
+	input.style('font-size', 25 * scale + 'px');
 	input.position(x, y);
 }
 
@@ -585,8 +588,8 @@ function zoomCanvas() {
 	var w = window.innerWidth;
 	var h = window.innerHeight;
 
-	var canvasWidth = 0;
-	var canvasHeight = 0;
+	canvasWidth = 0;
+	canvasHeight = 0;
 
 	if(w / 4 * 3 <= h){
 		canvasWidth = w;
@@ -600,4 +603,6 @@ function zoomCanvas() {
 	c.style.width = canvasWidth + 'px';
 	c.style.height = canvasHeight + 'px';
 	console.log(canvasWidth + ' px');
+
+	scale = canvasWidth / 800;
 }
