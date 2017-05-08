@@ -2,7 +2,7 @@ var canvas;
 var d;
 var canvasWidth;
 var canvasHeight;
-var scale;
+var scl;
 
 var headingImg;
 var infoImg;
@@ -30,6 +30,12 @@ var input;
 var sig;
 
 var released = true;
+
+var pX = -1;
+var pY = -1;
+var pT = -1;
+var distance = 0;
+var pDY = -1;
 
 function preload() {
 	headingImg = loadImage('assets/naslov.png');
@@ -163,7 +169,7 @@ function mouseStep3(){
 
 function selectColor(){
 	var c = get(mouseX, mouseY);
-	return color(red(c), green(c), blue(c), 10);
+	return color(red(c), green(c), blue(c), 12);
 }
 
 function drawStep4(){
@@ -295,6 +301,11 @@ function drawStep8(){
 }
 
 function mouseStep8(){
+	pX = mouseX;
+	pY = mouseY;
+	pT = new Date().getTime();
+	distance = 0;
+	selectedColor3 = selectColor();
 	if(mouseX > 128 && mouseX < 192 && mouseY > 84 && mouseY < 147){
 		drawStep7();
 	}else if(mouseX > 610 && mouseX < 673 && mouseY > 220 && mouseY < 283){
@@ -336,11 +347,11 @@ function drawStep9(){
 function placeInput(){
 	var offX = canvas.canvas.offsetLeft;
 	var offY = canvas.canvas.offsetTop;
-	var x = offX + 255 * scale;
-	var y = offY + 109 * scale;
-	input.style('width', 290 * scale + 'px');
-	input.style('height', 35 * scale + 'px');
-	input.style('font-size', 25 * scale + 'px');
+	var x = offX + 255 * scl;
+	var y = offY + 109 * scl;
+	input.style('width', 290 * scl + 'px');
+	input.style('height', 35 * scl + 'px');
+	input.style('font-size', 25 * scl + 'px');
 	input.position(x, y);
 }
 
@@ -428,16 +439,50 @@ function paint(){
 	var x = mouseX;
 	var y = mouseY;
 	//rect(mouseX, mouseY, 25, 25);
-	for(i = 25; i > 5; i-=2){
+	for(i = 30; i > 5; i-=2){
 		ellipse(x, y, i, i);
 	}
 	playSound();
 }
 
 function mixPaint(){
-	var c = get(mouseX, mouseY);
-	fill(lerpColor(selectedColor3, color(red(c), green(c), blue(c), 100), 0.5));
+	if(pX > 0){
+		var dX = pX - mouseX;
+		var dY = pY - mouseY;
+		var d = (dX * dX + dY * dY);
+		var dT = new Date().getTime() - pT;
+		var vel = (dX * dX + dY * dY) * 1000 / dT;
+		distance = distance + d;
+
+		//console.log(distance);
+		//console.log(vel);
+
+		if(dY != 0){
+			if(dY * pDY < 0){
+				//console.log(dY * pDY);
+				//console.log(dY);
+				var c;
+				if(dY < 0){
+					c = get(mouseX, mouseY + 20);
+				}else{
+					c = get(mouseX, mouseY - 20);
+				}
+				selectedColor3 = color(red(c), green(c), blue(c), 12);
+				distance = 0;
+			}
+			//save dY
+			pDY = dY;
+		}
+	}
+
+	//var c = get(mouseX, mouseY);
+	//fill(lerpColor(selectedColor3, color(red(c), green(c), blue(c), 100), 0.5));
+	fill(selectedColor3);
 	paint();
+
+	pX = mouseX;
+	pY = mouseY;
+	pT = new Date().getTime();
 }
 
 function playSound(){
@@ -593,6 +638,9 @@ function windowResized() {
 
 function mouseReleased() {
 	released = true;
+	pX = -1;
+	pY = -1;
+	distance = 0;
 }
 
 function zoomCanvas() {
@@ -615,5 +663,5 @@ function zoomCanvas() {
 	c.style.height = canvasHeight + 'px';
 	//console.log(canvasWidth + ' px');
 
-	scale = canvasWidth / 800;
+	scl = canvasWidth / 800;
 }
