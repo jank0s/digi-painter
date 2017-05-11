@@ -16,6 +16,10 @@ var img = new Array();
 var sound = new Array();
 var conceptImg;
 var printImg;
+var leftImg;
+var rightImg;
+var spaceImg;
+var backspaceImg;
 
 var step = 0;
 var selectedImg = -1;
@@ -39,6 +43,8 @@ var pT = -1;
 var distance = 0;
 var pDY = -1;
 
+var keys = ['A', 'B', 'C', 'Č', 'Ć' , 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'Š', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ž'];
+
 function preload() {
 	headingImg = loadImage('assets/naslov.png');
 	infoImg = loadImage('assets/info.png');
@@ -56,6 +62,10 @@ function preload() {
 	}
 	conceptImg = loadImage('assets/concept.png');
 	printImg = loadImage('assets/print.png');
+	leftImg = loadImage('assets/left.png');
+	rightImg = loadImage('assets/right.png');
+	spaceImg = loadImage('assets/space.png');
+	backspaceImg = loadImage('assets/backspace.png');
 }
 
 function setup() {
@@ -363,6 +373,7 @@ function drawStep9(){
 	textAlign(CENTER);
 	rectMode(CORNER);
 	fill(0);
+	noStroke();
 	textSize(22);
 	var t = ["Podpiši sliko", "Firma ' immagine", "Unterzeichne das Bild", "Sign the painting"];
 	text(t[lang], 220, 25, 360, 150);
@@ -374,20 +385,40 @@ function drawStep9(){
 	image(xImg, 610, 288, 63, 63);
 	image(img3, 200, 84, 400, 397);
 
-	fill(239, 235, 221);
+	fill(192);
 	stroke(255);
-	rect(200, 84, 400, 470);
+	rect(200, 84, 400, 458);
 	input = createInput();
 	placeInput();
 	placeInput();
+
+	textAlign(CENTER);
+	rectMode(CORNER);
+	fill(0);
+	noStroke();
+	textSize(25);
+	textStyle(BOLD);
+	for(i = 0; i < keys.length; i++){
+		var col = (i / 6) >> 0;
+		var row = i % 6;
+		var x = 225 + col * 70;
+		var y = 157 + row * 50;
+		text(keys[i], x, y, 70, 50);
+	}
+	textStyle(NORMAL);
+
+	image(spaceImg, 225, 454, 126, 63);
+	image(leftImg, 364, 454, 63, 63);
+	image(rightImg, 438, 454, 63, 63);
+	image(backspaceImg, 512, 454, 63, 63);
 }
 
 function placeInput(){
 	var offX = canvas.canvas.offsetLeft;
 	var offY = canvas.canvas.offsetTop;
-	var x = offX + 255 * scl;
+	var x = offX + 225 * scl;
 	var y = offY + 109 * scl;
-	input.style('width', 290 * scl + 'px');
+	input.style('width', 350 * scl + 'px');
 	input.style('height', 35 * scl + 'px');
 	input.style('font-size', 25 * scl + 'px');
 	input.position(x, y);
