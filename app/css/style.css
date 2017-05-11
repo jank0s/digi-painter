@@ -5,12 +5,5 @@ html, body {
 body {
   margin: 0;
   padding: 0; 
-  display: flex;
   background-color: #5C595A;
-
-  /* This centers our sketch horizontally. */
-  justify-content: center;
-
-  /* This centers our sketch vertically. */
-  align-items: center;
 }
