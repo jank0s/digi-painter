@@ -408,8 +408,8 @@ function drawStep9(){
 	textStyle(NORMAL);
 
 	image(spaceImg, 225, 454, 126, 63);
-	image(leftImg, 364, 454, 63, 63);
-	image(rightImg, 438, 454, 63, 63);
+	//image(leftImg, 364, 454, 63, 63);
+	//image(rightImg, 438, 454, 63, 63);
 	image(backspaceImg, 512, 454, 63, 63);
 }
 
@@ -437,7 +437,22 @@ function mouseStep9(){
 	}else if(mouseX > 128 && mouseX < 192 && mouseY > 152 && mouseY < 215){
 		input.remove();
 		changeLang();
+	}else if(mouseX > 225 && mouseX < 575 && mouseY > 157 && mouseY < 457){
+		inputKey();
+	}else if(mouseX > 225 && mouseX < 351 && mouseY > 454 && mouseY < 517){
+		input.elt.value = input.elt.value + " ";
+	}else if(mouseX > 512 && mouseX < 575 && mouseY > 454 && mouseY < 517){
+		input.elt.value = input.elt.value.slice(0, -1);
 	}
+
+}
+
+function inputKey(){
+	var row = ((mouseY - 157) / 50) >> 0;
+	var col = ((mouseX - 225) / 70) >> 0;
+	var char = keys[col * 6 + row];
+	//console.log(char);
+	input.elt.value = input.elt.value + char;
 }
 
 function drawStep10(){
