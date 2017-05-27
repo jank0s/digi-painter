@@ -391,6 +391,7 @@ function drawStep9(){
 	input = createInput();
 	placeInput();
 	placeInput();
+	input.elt.focus();
 
 	textAlign(CENTER);
 	rectMode(CORNER);
@@ -441,8 +442,10 @@ function mouseStep9(){
 		inputKey();
 	}else if(mouseX > 225 && mouseX < 351 && mouseY > 454 && mouseY < 517){
 		input.elt.value = input.elt.value + " ";
+		input.elt.focus();
 	}else if(mouseX > 512 && mouseX < 575 && mouseY > 454 && mouseY < 517){
 		input.elt.value = input.elt.value.slice(0, -1);
+		input.elt.focus();
 	}
 
 }
@@ -453,6 +456,7 @@ function inputKey(){
 	var char = keys[col * 6 + row];
 	//console.log(char);
 	input.elt.value = input.elt.value + char;
+	input.elt.focus();
 }
 
 function drawStep10(){
