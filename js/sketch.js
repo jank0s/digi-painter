@@ -195,7 +195,7 @@ function mouseStep3(){
 
 function selectColor(){
 	var c = get(mouseX, mouseY);
-	return color(red(c), green(c), blue(c), 12);
+	return color(red(c), green(c), blue(c), 13);
 }
 
 function drawStep4(){
