@@ -10,4 +10,4 @@ Project is implemented as client side HTML5 application with p5.js library. All 
 Project is published through GitHub Pages at: [http://slikar.me](http://slikar.me).
 
 ## Project report (in Slovenian language)
-Project report is available [here](https://raw.githubusercontent.com/jank0s/digi-painter/master/projectReport-JanKos.pdf).
+Project report is available [here](https://jank0s.github.io/digi-painter-report/projectReport-JanKos.pdf).
